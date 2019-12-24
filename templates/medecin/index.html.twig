@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste des medecins{% endblock %}
+
+{% block content %}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>ID medecin</th>
+            <th>Matricule</th>
+            <th>Prenom</th>
+            <th>Nom</th>
+            <th>Email</th>
+            <th>Telephone</th>
+            <th>Service ID</th>
+            <th>Actions</th>
+
+           
+        </tr>
+    </thead>
+    <tbody>
+    {% for medecin in medecins %}
+        <tr>
+            <td scope="row">{{medecin.id}}</td>
+           <td>{{medecin.matricule}}</td>
+            <td>{{medecin.prenom}}</td>
+            <td>{{medecin.nom}}</td>
+            <td>{{medecin.email}}</td>
+            <td>{{medecin.telephone}}</td>
+             <td>{{medecin.service.libelle}}</td>
+            <td>
+            <a href="{{path('editmedecin',{id: medecin.id})}}" class= "btn btn-primary">Editer</a>
+            <a href="{{path('deletemedecin',{id: medecin.id})}}" class=" btn btn-danger">Delete</a>
+            </td>
+    
+          </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="text-center">
+  <a href="{{path('addmedecin')}}" class= "btn btn-success">Ajouter Medecin</a>
+</div>
+{% endblock %}

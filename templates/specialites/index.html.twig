@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}specialites{% endblock %}
+
+{% block content %}
+    <h1 >Liste des specialites</h1>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Specialite</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for specialite in specialites %}
+            <tr>
+                <td>{{ specialite.id }}</td>
+                <td>{{ specialite.specialite }}</td>
+                <td>
+                    <a href="{{ path('specialites_show', {'id': specialite.id}) }}" class="btn btn-primary">show</a>
+                    <a href="{{ path('specialites_edit', {'id': specialite.id}) }}" class="btn btn-primary">edit</a>
+                  <a href="{{ path('specialites_delete', {'id': specialite.id}) }}"  onsubmit="return confirm('Are you sure you want to delete this item?');"
+                  class="btn btn-danger">
+                delete </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('specialites_new') }}" class="btn btn-success">Ajouter une specialite</a>
+{% endblock %}
